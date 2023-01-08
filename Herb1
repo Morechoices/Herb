@@ -1,0 +1,27 @@
+form>
+   <input type="text" name="herbSearch" placeholder="Search for herb...">
+   <search onsubmit="doSearch()">
+   <script type="text/javascript">
+      function doSearch(){
+         var query = document.querySelector('input[name="herbSearch"]').value;
+         getLatestResearch(query);
+      }
+      // AJAX method to get the latest research on an herb
+      function getLatestResearch(herbName){
+         var xhttp = new XMLHttpRequest();
+         xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               var results = JSON.parse(this.responseText);
+               // Display retrieved research
+               displayResearch(results);
+            }
+         };
+         xhttp.open("GET", "http://example.com/search?herb=" + herbName, true);
+         xhttp.send();
+      }
+      // Display the research data
+      function displayResearch(research) {
+         // Code to show research here
+      }
+   </script>
+</form>
